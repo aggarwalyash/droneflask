@@ -1,0 +1,169 @@
+<html>
+  <head>
+    <title>{{ title }} - microblog</title>
+<script type=text/javascript src="{{
+  url_for('static', filename='jquery-3.2.1.js') }}"></script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+
+  </head>
+  <body>
+      <h1>Hello, {{ user.nickname }}!</h1>
+
+<p id='throttle'><p>
+<p id="yaw"></p>
+<p id="pitch"></p>
+<p id="roll"></p>
+<button id="arm" class="btn btn-success">Arm</button>
+<button id="stop" class="btn btn-success">Stop</button>
+
+<button id="throttle_up" class="btn btn-success">throttle up</button>
+<button id="throttle_down" class="btn btn-success">throttle down</button>
+<button id="yaw_left" class="btn btn-success">yaw left</button>
+<button id="yaw_right" class="btn btn-success">yaw right</button>
+<button id="pitch_up" class="btn btn-success">pitch up </button>
+<button id="pitch_down" class="btn btn-success">pitch down</button>
+<button id="roll_left" class="btn btn-success">roll left</button>
+<button id="roll_right" class="btn btn-success">roll right</button>
+
+<!--<p><input type=text size=5 name=a> +
+   <input type=text size=5 name=b> =
+   <span id=result>?</span>
+<p><a href=# id=calculate>calculate server side</a>-->
+<!--<script type=text/javascript src="{{ url_for('static', filename='main.js') }}"</script>-->
+
+<script type='text/javascript'>
+$(function() {
+
+    $('button#arm').bind('click', function(){
+      $.getJSON($SCRIPT_ROOT + '/arm', {
+      }, function(data) {
+        $("#throttle").text(data.throttle);
+        $("#yaw").text(data.yaw);
+        $("#roll").text(data.roll);
+        $("#pitch").text(data.pitch);
+      });
+      return false;
+    });
+
+    $('button#stop').bind('click', function(){
+      $.getJSON($SCRIPT_ROOT + '/stop', {
+      }, function(data) {
+        $("#throttle").text(data.throttle);
+        $("#yaw").text(data.yaw);
+        $("#roll").text(data.roll);
+        $("#pitch").text(data.pitch);
+      });
+      return false;
+    });
+
+    $('button#throttle_up').bind('click', function(){
+      $.getJSON($SCRIPT_ROOT + '/throttle', {
+        a: 'throttle_up'
+      }, function(data) {
+        $("#throttle").text(data.throttle);
+        $("#yaw").text(data.yaw);
+        $("#roll").text(data.roll);
+        $("#pitch").text(data.pitch);
+      });
+      return false;
+    });
+    $('button#throttle_down').bind('click', function(){
+      $.getJSON($SCRIPT_ROOT + '/throttle', {
+        a: 'throttle_down'
+      }, function(data) {
+        $("#throttle").text(data.throttle);
+        $("#yaw").text(data.yaw);
+        $("#roll").text(data.roll);
+        $("#pitch").text(data.pitch);
+      });
+      return false;
+    });
+
+    $('button#yaw_left').bind('click', function(){
+      $.getJSON($SCRIPT_ROOT + '/yaw', {
+        a: 'yaw_left'
+      }, function(data) {
+        $("#throttle").text(data.throttle);
+        $("#yaw").text(data.yaw);
+        $("#roll").text(data.roll);
+        $("#pitch").text(data.pitch);
+      });
+      return false;
+    });
+    $('button#yaw_right').bind('click', function(){
+      $.getJSON($SCRIPT_ROOT + '/yaw', {
+        a: 'yaw_right'
+      }, function(data) {
+        $("#throttle").text(data.throttle);
+        $("#yaw").text(data.yaw);
+        $("#roll").text(data.roll);
+        $("#pitch").text(data.pitch);
+      });
+      return false;
+    });
+
+    $('button#pitch_up').bind('click', function(){
+      $.getJSON($SCRIPT_ROOT + '/pitch', {
+        a: 'pitch_up'
+      }, function(data) {
+        $("#throttle").text(data.throttle);
+        $("#yaw").text(data.yaw);
+        $("#roll").text(data.roll);
+        $("#pitch").text(data.pitch);
+      });
+      return false;
+    });
+    $('button#pitch_down').bind('click', function(){
+      $.getJSON($SCRIPT_ROOT + '/pitch', {
+        a: 'pitch_down'
+      }, function(data) {
+        $("#throttle").text(data.throttle);
+        $("#yaw").text(data.yaw);
+        $("#roll").text(data.roll);
+        $("#pitch").text(data.pitch);
+      });
+      return false;
+    });
+
+    $('button#roll_left').bind('click', function(){
+      $.getJSON($SCRIPT_ROOT + '/roll', {
+        a: 'roll_left'
+      }, function(data) {
+        $("#throttle").text(data.throttle);
+        $("#yaw").text(data.yaw);
+        $("#roll").text(data.roll);
+        $("#pitch").text(data.pitch);
+      });
+      return false;
+    });
+    $('button#roll_right').bind('click', function(){
+      $.getJSON($SCRIPT_ROOT + '/roll', {
+        a: 'roll_right'
+      }, function(data) {
+        $("#throttle").text(data.throttle);
+        $("#yaw").text(data.yaw);
+        $("#roll").text(data.roll);
+        $("#pitch").text(data.pitch);
+      });
+      return false;
+    });
+
+
+  });
+</script>
+</body>
+</html>
+
+
+
+// $('a#calculate').bind('click', function() {
+//   $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
+//     a: $('input[name="a"]').val(),
+//     b: $('input[name="b"]').val()
+//   }, function(data) {
+//     $("#result").text(data.result);
+//   });
+//   return false;
+// });
